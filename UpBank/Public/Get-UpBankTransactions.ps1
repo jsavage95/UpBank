@@ -1,9 +1,9 @@
-Function Get-Transactions {
+Function Get-UpBankTransactions {
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(ValueFromPipeline = $true)]
         [System.String]
-        $APIKey = (Get-APIKey),
+        $APIKey,
         [Parameter()]
         [System.String]
         $PageSize = '20',

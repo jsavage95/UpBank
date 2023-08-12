@@ -1,9 +1,9 @@
 Function Get-Tags{
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(ValueFromPipeline = $true)]
         [System.String]
-        $APIKey = (Get-APIKey),
+        $APIKey,
         [System.String]
         $PageSize = '2'
     )
