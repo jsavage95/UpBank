@@ -37,14 +37,14 @@ function Set-APIKeyToFile {
                 throw "Directory not found at the path '$_'."
             }
         })]
-        [string]$FolderPath
+        [string]$FolderPath,
+        
+        # Define the default file name
+        [string]$FileName = "UpBankAPIKey.txt"
     )
 
     # Convert the API key to a secure string
     $secureAPIKey = ConvertTo-SecureString $APIKey -AsPlainText -Force
-
-    # Define the default file name
-    $fileName = "UpBankAPIKey.txt"
 
     # Combine the folder path and file name
     $filePath = Join-Path -Path $FolderPath -ChildPath $fileName
