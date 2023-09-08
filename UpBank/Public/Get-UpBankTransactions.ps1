@@ -2,8 +2,18 @@ Function Get-UpBankTransactions {
     [CmdletBinding()]
     param (
         [Parameter(ValueFromPipeline = $true)]
+        [ValidateScript({
+            if(!(Ping-UpBankAPI -APIKey $_)){
+                return $error
+            }else{
+                return $true
+            }
+        })]
         [System.String]
         $APIKey,
+        [Parameter()]
+        [System.String]
+        $Uri = 'https://api.up.com.au/api/v1/transactions',
         [Parameter()]
         [System.String]
         $PageSize = '20',
@@ -29,8 +39,6 @@ Function Get-UpBankTransactions {
         'Authorization' = "Bearer $APIKey"
     }
 
-    $uri = 'https://api.up.com.au/api/v1/transactions'
-
     $parameters = @{
         'page[size]'     = $PageSize
         'filter[status]' = $FilterStatus
@@ -45,7 +53,13 @@ Function Get-UpBankTransactions {
 
     $filters.GetEnumerator() | Where-Object { $_.Value } | ForEach-Object { $parameters[$_.Key] = $_.Value }
 
-    $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get -Body $parameters
+    $APIParams = @{
+        Uri = $Uri
+        Headers = $headers
+        Body = $parameters
+    }
+
+    $response = Invoke-RestMethod @APIParams
 
     return $response
 }
