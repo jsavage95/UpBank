@@ -6,3 +6,4 @@ This module is to interact with the Australian bank "UpBank" via API in Powershe
 ### Note
 Currently in progress...
 
+
