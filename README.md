@@ -1,8 +1,8 @@
-### Module-Name
-Upbank
+### Upbank Powershell Module
 
-### _Templates
-Files in here are needed to run the New-PSModule.ps1 script to create a new module.
+### Description
+This module is to interact with the Australian bank "UpBank" via API in Powershell (https://developer.up.com.au/).
 
-### New-PSModule.ps1
-A script to run which can be used to create new modules.
+### Note
+Currently in progress...
+
